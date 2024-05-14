@@ -9,12 +9,15 @@
 		
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <!--THIS JQUERY VERSION NEEDED FOR POPUP-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/custom.css">
   </head>
   <body>
-		
-		<div class="wrapper d-flex align-items-stretch">
+
+    <div class="wrapper d-flex align-items-stretch">
 		
       <nav id="sidebar" class="">
 				<div class="custom-menu">
@@ -55,7 +58,52 @@
             Notepad++. A common naming convention is to create the main HTML document as "index.html".
         </p>
 
-          <div class="container m-0 mt-4 p-0">
+        <!--START OF CODE TO CREATE MODAL FORM-->
+        
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-outline-primary btn-sm float-right m-1" data-toggle="modal" data-target="#videoModal">
+          Watch Video
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="videoModalLabel">Into to HTML</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <!-- Replace 'your-video-url.mp4' with your actual video URL -->
+                <video id="modalVideo" width="100%" controls>
+                  <source src="resources/HTMLstrong.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script>
+          $('#videoModal').on('shown.bs.modal', function (e) {
+            $("#modalVideo")[0].play(); // Automatically play when opened
+          });
+          
+          $('#videoModal').on('hide.bs.modal', function (e) {
+            $("#modalVideo")[0].pause();  // Pause when the modal is closed
+            $("#modalVideo")[0].currentTime = 0; // Optional: reset video to start
+          });
+        </script>
+    
+        <!--END OF CODE TO CREATE MODAL FORM-->
+
+
+        <div class="container m-0 mt-4 p-0">
           <object
             data="resources/HTML5.pdf"
             type="application/pdf"
@@ -68,7 +116,6 @@
       </div>
 		</div>
 
-    <script src="js/jquery.min.js"></script>
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
